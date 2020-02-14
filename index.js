@@ -1,9 +1,17 @@
 const prompt = require('inquirer').createPromptModule()
 
-
-
 // Questions
 prompt ([
+    {
+        type: 'input',
+        name: 'contestantOne',
+        message: 'What is the name of the Contestant?'
+    },
+    {
+        type: 'input',
+        name: 'panelistOne',
+        message: 'What is the name of Panelist One?'
+    },
     {
         type: 'password',
         name: 'qOneContestant',
@@ -49,41 +57,4 @@ prompt ([
     } else {
         console.log('Wrong');
     }
-prompt([
-  {
-    type: 'string',
-    name: 'contestant',
-    message: 'Who is the lucky one?',
-  },
-  {
-    type: 'number',
-    name: 'p',
-    message: 'How many panelists really know you?'
-  },
-  // {
-  //   type: 'string',
-  //   name: 'panel',
-  //   message: 'What is your name?'
-  // }
-])
-
-.then (({contestant, p}) => {
-  (p > 0)
-  console.log(contestant, p)
-  let arr = []
-
-  for (i = 0; i < p; i++) {
-    arr.push(prompt('Panelist, what is your name?' + (i++)));
-  
-    // prompt([
-    //   {
-    //     type: 'string',
-    //     name: 'panel',
-    //     message: 'Panelist, what is your name?'
-    //   }
-    // ])
-      // .then(({ panel }) => {
-        console.log(arr[i])
-      // })
-  }
 })
