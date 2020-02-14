@@ -5,32 +5,32 @@ const prompt = require('inquirer').createPromptModule()
 // Questions
 prompt ([
     {
-        type: 'input',
+        type: 'password',
         name: 'qOneContestant',
         message: 'Are you single, in a relationship, or married?'
     },
     {
-        type: 'input',
+        type: 'password',
         name: 'qOnePanelistOne',
         message: 'Are you single, in a relationship, or married?'
     },
     {
-        type: 'input',
+        type: 'password',
         name: 'qTwoContestant',
         message: 'What is your favorite type of food?'
     },
     {
-        type: 'input',
+        type: 'password',
         name: 'qTwoPanelistOne',
         message: 'What is your favorite type of food?'
     },
     {
-        type: 'input',
+        type: 'password',
         name: 'qThreeContestant',
         message: 'Do you like chocolate?'
     },
     {
-        type: 'input',
+        type: 'password',
         name: 'qThreePanelistOne',
         message: 'Do you like chocolate?'
     },
