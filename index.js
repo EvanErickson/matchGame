@@ -8,103 +8,93 @@ prompt([
     },
     {
         type: 'number',
-        name: 'p',
+        name: 'panelistCount',
         message: 'How many panelists really know you?'
     }
 ])
 
-    .then(({ contestant, p }) => {
-        let arr = []
+    .then(({ contestant, panelistCount }) => {
+        let intros = []
 
-        for (let i = 0; i < p; i++) {
-            arr.push({
+        for (let i = 0; i < panelistCount; i++) {
+            intros.push({
                 type: 'input',
-                name: '' + i,
+                name: 'panelist' + i,
                 message: 'Panelist, what is your name?'
             })
         }
-        prompt(arr)
-            .then(response => {
-                //   console.log(response)
-                for (i = 0; i < p; i++) {
+        prompt(intros)
+            .then(res => {
+                console.log(res);
 
-                    prompt([
+                let questions = []
+
+                questions.push({
+                    type: 'password',
+                    name: `q1Contestant`,
+                    message: `${contestant} Are you single, in a relationship, or married?`
+                })
+
+                for (i = 0; i < panelistCount; i++) {
+                    questions.push(
                         {
                             type: 'password',
-                            name: 'qOneContestant',
-                            message: 'Are you single, in a relationship, or married?'
-                        },
-                        {
-                            type: 'password',
-                            name: 'qOnePanelistOne',
-                            message: `${response[i]}, Are they single, in a relationship, or married?`
-                        },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qOnePanelistTwo',
-                        //     message: `${response[1]}, Are they single, in a relationship, or married?`
-                        // },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qOnePanelistThree',
-                        //     message: `${response[2]}, Are they single, in a relationship, or married?`
-                        // },
-                        {
-                            type: 'password',
-                            name: 'qTwoContestant',
-                            message: 'What is your favorite type of food?'
-                        },
-                        {
-                            type: 'password',
-                            name: 'qTwoPanelistOne',
-                            message: `${response[i]}, What is their favorite type of food?`
-                        },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qTwoPanelistOne',
-                        //     message: `${response[1]}, What is their favorite type of food?`
-                        // },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qTwoPanelistOne',
-                        //     message: `${response[2]}, What is their favorite type of food?`
-                        // },
-                        {
-                            type: 'password',
-                            name: 'qThreeContestant',
-                            message: 'Do you like chocolate?'
-                        },
-                        {
-                            type: 'password',
-                            name: 'qThreePanelistOne',
-                            message: `${response[i]}, Do they like chocolate?`
-                        },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qThreePanelistOne',
-                        //     message: `${response[1]}, Do they like chocolate?`
-                        // },
-                        // {
-                        //     type: 'password',
-                        //     name: 'qThreePanelistOne',
-                        //     message: `${response[2]}, Do they like chocolate?`
-                        // },
-                    ]).then(response => {
-                        // console.log(response)
-                        if (response.qOnePanelistOne === response.qOneContestant) {
-                            console.log('Correct')
-                        } else {
-                            console.log('Wrong!');
-                        } if (response.qTwoPanelistOne === response.qTwoContestant) {
-                            console.log('Correct');
-                        } else {
-                            console.log('Wrong');
-                        } if (response.qThreePanelistOne === response.qThreeContestant) {
-                            console.log('Correct');
-                        } else {
-                            console.log('Wrong');
+                            name: `q1Panelist${i}`,
+                            message: `${res['panelist' + i]}, Are you single, in a relationship, or married?`
                         }
-                    })
+                    )
                 }
-            }
+
+                questions.push({
+                    type: 'password',
+                    name: `q2Contestant`,
+                    message: `${contestant} What is your favorite type of food?`
+                })
+
+                for (i = 0; i < panelistCount; i++) {
+                    questions.push({
+                        type: 'password',
+                        name: `q2Panelist${i}`,
+                        message: `${res['panelist' + i]} What is your favorite type of food?`
+
+
+                    },
+                    )
+                }
+
+                questions.push({
+                    type: 'password',
+                    name: `q3Contestant`,
+                    message: `${contestant} Do you like chocolate?`
+                })
+
+                for (i = 0; i < panelistCount; i++) {
+                    questions.push({
+                        type: 'password',
+                        name: `q3Panelist${i}`,
+                        message: `${res['panelist' + i]} Do you like chocolate?`
+
+
+                    },
+                    )
+                }
+
+                prompt(questions).then(response => {
+                    console.log(response)
+                    // if (response.qOnePanelistOne === response.qOneContestant) {
+                    //     console.log('Correct')
+                    // } else {
+                    //     console.log('Wrong!');
+                    // } if (response.qTwoPanelistOne === response.qTwoContestant) {
+                    //     console.log('Correct');
+                    // } else {
+                    //     console.log('Wrong');
+                    // } if (response.qThreePanelistOne === response.qThreeContestant) {
+                    //     console.log('Correct');
+                    // } else {
+                    //     console.log('Wrong');
+                    // }
+                })
+            })
     })
+
