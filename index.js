@@ -1,6 +1,6 @@
 const prompt = require('inquirer').createPromptModule()
 
-let questionArr = []
+
 
 // Questions
 prompt([
@@ -34,15 +34,22 @@ prompt([
         name: 'qThreePanelistOne',
         message: 'Do you like chocolate?'
     }
-])
-
-console.log(prompt)
-    .then(response => {
-        // console.log(response)
-        for (let i = 0; i < 3; i++) {
-            questionArr.push(prompt)
-            console.log(questionArr)
+]).then(response => {
+    // console.log(response)
+    for (let i = 0; i < 3; i++) {
+        if (response.qOnePanelistOne === response.qOneContestant) {
+            console.log('Correct')
+        } else {
+            console.log('Wrong!');
+        } if (response.qTwoPanelistOne === response.qTwoContestant) {
+            console.log('Correct');
+        } else {
+            console.log('Wrong');
+        } if (response.qThreePanelistOne === response.qThreeContestant) {
+            console.log('Correct');
+        } else {
+            console.log('Wrong');
         }
+    }
 
-
-    })
+})
